@@ -34,7 +34,7 @@ public class Produto {
                         "}")
                 .contentType("application/json")
                 .when()
-                .post("http://locahost:3000/produtos")
+                .post("http://localhost:3000/produtos")
                 .then()
                 .statusCode(HttpStatus.SC_CREATED)
                 .body("message", is("Cadastro realizado com sucesso"))
@@ -42,13 +42,14 @@ public class Produto {
         return productID;
     }
 
-    public void listarProdutoPorID(String productID) {
+    public void listarProdutoPorID(String productID, Integer quantidade) {
         given()
                 .pathParam("_id", productID)
         .when()
                 .get("http://localhost:3000/produtos/{_id}")
         .then()
                 .statusCode(HttpStatus.SC_OK)
+                .body("quantidade",is(quantidade))
                 .body("_id", is(productID));
     }
 
@@ -63,3 +64,5 @@ public class Produto {
                 .body("message", is("Registro excluído com sucesso"));
     }
 }
+
+

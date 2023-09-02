@@ -33,14 +33,14 @@ public class Carrinho {
                 .post("http://localhost:3000/carrinhos")
         .then()
                 .statusCode(HttpStatus.SC_CREATED)
-                .body("message", is("Cadstro realizado com sucesso"));
+                .body("message", is("Cadastro realizado com sucesso"));
     }
 
     public void cancelarCompra(String userToken) {
         given()
                 .header("authorization", userToken)
         .when()
-                .delete("http://localhost:3000/carrinho/cancelar-compra")
+                .delete("http://localhost:3000/carrinhos/cancelar-compra")
         .then()
                 .statusCode(HttpStatus.SC_OK)
                 .body("message", is("Registro excluído com sucesso. Estoque dos produtos reabastecido"));

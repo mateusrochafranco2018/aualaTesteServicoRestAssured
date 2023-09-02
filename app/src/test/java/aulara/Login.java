@@ -24,7 +24,7 @@ public class Login {
                                             "}")
                                     .contentType("application/json")
                            .when()
-                                    .post("http://locahost:3000/login")
+                                    .post("http://localhost:3000/login")
                            .then()
                                     .statusCode(HttpStatus.SC_OK)
                                     .body("message", is("Login realizado com sucesso"))

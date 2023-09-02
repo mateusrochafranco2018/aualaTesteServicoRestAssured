@@ -55,6 +55,16 @@ public class Usuario {
                 .body("_id", is(userID));
     }
 
+    public void listarUsuarioPorIDErro(String userID) {
+        given()
+                .pathParam("_id", userID)
+                .when()
+                .get("http://localhost:3000/usuarios/{_id}")
+                .then()
+                .statusCode(HttpStatus.SC_BAD_REQUEST)
+                .body("_id", is(userID));
+    }
+
     public void excluirUsuarioPorID(String userID) {
         given()
                 .pathParam("_id", userID)
@@ -63,6 +73,16 @@ public class Usuario {
         .then()
                 .statusCode(HttpStatus.SC_OK)
                 .body("message", is("Registro excluído com sucesso"));
+    }
+
+    public void excluirUsuarioPorIDComCarrinhoAssociado(String userID) {
+        given()
+                .pathParam("_id", userID)
+                .when()
+                .delete("http://localhost:3000/usuarios/{_id}")
+                .then()
+                .statusCode(HttpStatus.SC_BAD_REQUEST)
+                .body("message", is("Não é permitido excluir usuário com carrinho cadastrado"));
     }
 
     public void editarUsuarioExistente(String userID, Usuario usuario, Boolean exists) {

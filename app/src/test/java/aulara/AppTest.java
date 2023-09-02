@@ -28,19 +28,19 @@ public class AppTest {
     @Test
     public void postUsuario() {
         userID = given()
-                        .body("{\n" +
-                                "  \"nome\": \"6Rest Assured\",\n" +
-                                "  \"email\": \"testrestassured6@qa.com.br\",\n" +
-                                "  \"password\": \"teste\",\n" +
-                                "  \"administrador\": \"true\"\n" +
-                                "}")
-                        .contentType("application/json")
+                .body("{\n" +
+                        "  \"nome\": \"6Rest Assured\",\n" +
+                        "  \"email\": \"testrestassured6@qa.com.br\",\n" +
+                        "  \"password\": \"teste\",\n" +
+                        "  \"administrador\": \"true\"\n" +
+                        "}")
+                .contentType("application/json")
                 .when()
-                        .post("/usuarios")
+                .post("/usuarios")
                 .then()
-                        .statusCode(HttpStatus.SC_CREATED)
-                        .body("message", is("Cadastro realizado com sucesso"))
-                        .extract().path("_id");
+                .statusCode(HttpStatus.SC_CREATED)
+                .body("message", is("Cadastro realizado com sucesso"))
+                .extract().path("_id");
         System.out.println(getUserID());
     }
 
