@@ -18,17 +18,17 @@ public class Login {
 
     public String efetuarLogin(Login login) {
         String userToken = given()
-                .body("{\n" +
-                        "  \"email\": \"" + login.email + "\",\n" +
-                        "  \"password\": \"" + login.password + "\"\n" +
-                        "}")
-                .contentType("application/json")
-                .when()
-                .post("http://locahost:3000/login")
-                .then()
-                .statusCode(HttpStatus.SC_OK)
-                .body("message", is("Login realizado com sucesso"))
-                .extract().path("authorization");
+                                    .body("{\n" +
+                                            "  \"email\": \"" + login.email + "\",\n" +
+                                            "  \"password\": \"" + login.password + "\"\n" +
+                                            "}")
+                                    .contentType("application/json")
+                           .when()
+                                    .post("http://locahost:3000/login")
+                           .then()
+                                    .statusCode(HttpStatus.SC_OK)
+                                    .body("message", is("Login realizado com sucesso"))
+                                    .extract().path("authorization");
         return userToken;
     }
 }

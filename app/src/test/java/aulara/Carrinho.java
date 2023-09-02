@@ -29,9 +29,9 @@ public class Carrinho {
                         "  ]\n" +
                         "}")
                 .contentType("application/json")
-                .when()
+        .when()
                 .post("http://localhost:3000/carrinhos")
-                .then()
+        .then()
                 .statusCode(HttpStatus.SC_CREATED)
                 .body("message", is("Cadstro realizado com sucesso"));
     }
@@ -39,9 +39,9 @@ public class Carrinho {
     public void cancelarCompra(String userToken) {
         given()
                 .header("authorization", userToken)
-                .when()
+        .when()
                 .delete("http://localhost:3000/carrinho/cancelar-compra")
-                .then()
+        .then()
                 .statusCode(HttpStatus.SC_OK)
                 .body("message", is("Registro excluído com sucesso. Estoque dos produtos reabastecido"));
     }

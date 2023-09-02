@@ -45,9 +45,9 @@ public class Produto {
     public void listarProdutoPorID(String productID) {
         given()
                 .pathParam("_id", productID)
-                .when()
+        .when()
                 .get("http://localhost:3000/produtos/{_id}")
-                .then()
+        .then()
                 .statusCode(HttpStatus.SC_OK)
                 .body("_id", is(productID));
     }
@@ -56,9 +56,9 @@ public class Produto {
         given()
                 .pathParam("_id", productID)
                 .header("authorizattion", userToken)
-                .when()
+        .when()
                 .delete("http://localhost:3000/produtos/{_id}")
-                .then()
+        .then()
                 .statusCode(HttpStatus.SC_OK)
                 .body("message", is("Registro excluído com sucesso"));
     }

@@ -29,28 +29,28 @@ public class Usuario {
 
     public String cadatrarUsuario(Usuario usuario) {
         String userID = given()
-                .body("{\n" +
-                        "  \"nome\": \"" +  usuario.nome + "\",\n" +
-                        "  \"email\": \"" + usuario.email + "\",\n" +
-                        "  \"password\": \"" + usuario.password + "\",\n" +
-                        "  \"administrador\": \"" + usuario.administrador + "\"\n" +
-                        "}")
-                .contentType("application/json")
-                .when()
-                .post("http://localhost:3000/usuarios")
-                .then()
-                .statusCode(HttpStatus.SC_CREATED)
-                .body("message", is("Cadastro realizado com sucesso"))
-                .extract().path("_id");
+                                    .body("{\n" +
+                                            "  \"nome\": \"" +  usuario.nome + "\",\n" +
+                                            "  \"email\": \"" + usuario.email + "\",\n" +
+                                            "  \"password\": \"" + usuario.password + "\",\n" +
+                                            "  \"administrador\": \"" + usuario.administrador + "\"\n" +
+                                            "}")
+                                    .contentType("application/json")
+                        .when()
+                                    .post("http://localhost:3000/usuarios")
+                        .then()
+                                    .statusCode(HttpStatus.SC_CREATED)
+                                    .body("message", is("Cadastro realizado com sucesso"))
+                                    .extract().path("_id");
         return userID;
     }
 
     public void listarUsuarioPorID(String userID) {
         given()
                 .pathParam("_id", userID)
-                .when()
+        .when()
                 .get("http://localhost:3000/usuarios/{_id}")
-                .then()
+        .then()
                 .statusCode(HttpStatus.SC_OK)
                 .body("_id", is(userID));
     }
@@ -58,9 +58,9 @@ public class Usuario {
     public void excluirUsuarioPorID(String userID) {
         given()
                 .pathParam("_id", userID)
-                .when()
+        .when()
                 .delete("http://localhost:3000/usuarios/{_id}")
-                .then()
+        .then()
                 .statusCode(HttpStatus.SC_OK)
                 .body("message", is("Registro excluído com sucesso"));
     }
@@ -87,9 +87,9 @@ public class Usuario {
                         "  \"administrador\": \"" + usuario.administrador + "\"\n" +
                         "}")
                 .contentType("application/json")
-                .when()
+        .when()
                 .put("http://localhost:3000/usuarios/{_id}")
-                .then()
+        .then()
                 .statusCode(statusCode)
                 .body("message", is(message));
     }
